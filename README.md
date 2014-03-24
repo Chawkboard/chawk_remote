@@ -19,12 +19,17 @@ Or install it yourself as:
 ## Usage
 
 Shortened response commands
+
 	chawk_remote -h http://localhost:3000 -n 1 -x client_api_id -a api_key clear
+
 	{"addr"=>"1", "prepared_at"=>"2014-03-24T08:39:48-04:00", "key_expires"=>"2014-04-06T00:43:09.102Z"}
 
 Standard response commands
+
 	chawk_remote -h http://localhost:3000 -n 1 -x client_api_id -a api_key add 1,2,3
+
 	chawk_remote -h http://localhost:3000 -n 1 -x client_api_id -a api_key increment 10
+
 	chawk_remote -h http://localhost:3000 -n 1 -x client_api_id -a api_key decrement 10
 
 	{"addr"=>"1", 
@@ -41,6 +46,7 @@ Standard response commands
 	}
 
 Full response commands
+
 	chawk_remote -h http://localhost:3000 -n 1 -x client_api_id -a api_key last
 
 	{"addr"=>"1", 
