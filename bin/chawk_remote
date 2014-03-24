@@ -17,7 +17,6 @@ opt = OptionParser.new do |opts|
   end
 
   opts.on("-h", "--host host", "Set host (http://foo:500)") do |h|
-    puts "XX#{h}XX"
     options[:host] = h
   end
 
@@ -56,7 +55,7 @@ unless options[:api_key]
   exit 1
 end
 
-pp options
+#pp options
 # pp ARGV
 
 case ARGV[0]
@@ -66,6 +65,6 @@ when "last"
   puts x.last 100
 end
 
-x = ChawkRemote::Addr.new("http://localhost:3000","1","160805d6c85fe7f526ee497a3ded7edf","17f688b77d068c14ff38417b0643410f")
+#x = ChawkRemote::Addr.new("http://localhost:3000","1","160805d6c85fe7f526ee497a3ded7edf","17f688b77d068c14ff38417b0643410f")
 #puts x.last 100
 
