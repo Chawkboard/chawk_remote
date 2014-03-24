@@ -1,0 +1,71 @@
+#!/usr/bin/env ruby
+require 'chawk_remote'
+require 'optparse'
+require 'yaml'
+require 'pp'
+
+
+
+options = {}
+#pp YAML::dump(options)
+
+opt = OptionParser.new do |opts|
+  opts.banner = "Usage: chawk [options] command [data]"
+
+  opts.on("-c", "--config file", "Use config file (options will override)") do |config|
+    options = YAML.load_file(config)
+  end
+
+  opts.on("-h", "--host host", "Set host (http://foo:500)") do |h|
+    puts "XX#{h}XX"
+    options[:host] = h
+  end
+
+  opts.on("-x", "--client_api_id", "Chawk client ID") do |x|
+    options[:api_client] = x
+  end
+
+  opts.on("-a", "--client_api_key", "Chawk client ID") do |a|
+    options[:api_key] = a
+  end
+
+  opts.on("-n", "--series_address", "Chawk series address") do |n|
+    options[:node] = n
+  end
+
+end
+
+opt.parse!
+
+unless options[:host]
+  puts "Host is missing"
+  exit 1
+end
+unless options[:node]
+  puts "Node is missing"
+  exit 1
+end
+
+unless options[:api_client]
+  puts "Client Api is missing"
+  exit 1
+end
+
+unless options[:api_key]
+  puts "Api Key is missing"
+  exit 1
+end
+
+pp options
+# pp ARGV
+
+case ARGV[0]
+
+when "last"
+  x = ChawkRemote::Addr.new(options[:host],options[:node],options[:api_client],options[:api_key])
+  puts x.last 100
+end
+
+x = ChawkRemote::Addr.new("http://localhost:3000","1","160805d6c85fe7f526ee497a3ded7edf","17f688b77d068c14ff38417b0643410f")
+#puts x.last 100
+
